@@ -6,7 +6,7 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plan_params)
     if @plan.save
-      redirect_to new_plan_path
+      redirect_to plans_path
     else
       render :new
     end
