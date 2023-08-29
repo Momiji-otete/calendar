@@ -17,11 +17,21 @@ class PlansController < ApplicationController
     @plans = Plan.all
   end
 
-
-  def edit
+  def show
+    @plan = Plan.find(params[:id])
   end
 
-  def show
+  def edit
+    @plan = Plan.find(params[:id])
+  end
+
+  def update
+    @plan = Plan.find(params[:id])
+    if @plan.update(plan_params)
+      redirect_to plan_path(@plan)
+    else
+      render :edit
+    end
   end
   
   
