@@ -14,6 +14,7 @@ class PlansController < ApplicationController
 
 
   def index
+    @plans = Plan.all
   end
 
 
@@ -21,5 +22,12 @@ class PlansController < ApplicationController
   end
 
   def show
+  end
+  
+  
+  private
+  
+  def plan_params
+    params.require(:plan).permit(:title, :body, :date_time)
   end
 end
