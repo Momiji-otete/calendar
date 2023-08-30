@@ -17,12 +17,12 @@ class PlansController < ApplicationController
 
 
   def index
-    @plans = Plan.all
+    @plans = current_user.plans
   end
 
   def show
     @plan = Plan.find(params[:id])
-    @plans = Plan.all
+    @plans = current_user.plans
   end
 
   def edit
