@@ -1,9 +1,33 @@
-<%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
-  <%= date.day %>
-  
-  <% plans.each do |plan| %>
-    <div>
-      <%= link_to plan.title, plan %>
-    </div>
-  <% end %>
-<% end %>
+<div>
+  <div>
+    <h3>予定一覧</h3>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>タイトル</th>
+          <th>日程</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @plans.each do |plan| %>
+          <tr>
+            <td><%= link_to plan.title , plan %></td>
+            <td><%= plan.date_time.strftime("%m-%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div>
+  <%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
+    <%= date.day %>
+    
+    <% plans.each do |plan| %>
+      <div>
+        <%= link_to plan.title, plan %>
+      </div>
+    <% end %>
+  <% end %>  
+  </div>
+</div>
