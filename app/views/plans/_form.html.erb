@@ -1,0 +1,22 @@
+<%= render 'layouts/errors', obj: plan %>
+
+<%= form_with model: plan do |f| %>
+  <div>
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :body, "内容" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div>
+    <%= f.label :date_time, "日時" %>
+    <%= f.datetime_select :date_time %>
+  </div>
+
+  <div>
+    <%= f.submit submit %>
+  </div>
+<% end %>

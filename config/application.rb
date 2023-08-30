@@ -20,5 +20,7 @@ module Calendar
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = "Asia/Tokyo"
     config.autoload_paths += Dir["#{config.root}/lib"]
+    config.i18n.available_locales = :ja
+    config.i18n.default_locale = :ja
   end
 end

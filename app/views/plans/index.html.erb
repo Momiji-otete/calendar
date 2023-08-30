@@ -1,7 +1,7 @@
 <div>
   <div>
     <h3>予定一覧</h3>
-    <table class="table">
+    <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
           <th>タイトル</th>
@@ -18,7 +18,6 @@
       </tbody>
     </table>
   </div>
-  <hr>
   <div>
   <%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
     <%= date.day %>
