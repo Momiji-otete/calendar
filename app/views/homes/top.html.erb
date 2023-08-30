@@ -1,2 +1,22 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="mx-auto mt-3 col-11">
+      <h3>これはカレンダーアプリです</h3>
+      <p>
+        予定を追加することができ、予定を管理しましょう！<br>
+        予定の前日のAM9時なると登録されたメールアドレス宛に、<br>
+        リマインダーが強制的に送られてきます。<br>
+        これで予定を忘れることはありませんね！！！
+      </p>
+    </div>
+
+    <div class="btn-wrapper col-10 mx-auto">
+      <div class="row">
+        <%= link_to "Log in", new_user_session_path, class: "btn btn-success mt-3" %>
+      </div>
+      <div class="row">
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary mt-3" %>
+      </div>
+    </div>
+  </div>
+</div>
