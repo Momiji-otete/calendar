@@ -1,32 +1,35 @@
-<div>
-  <div>
-    <h3>予定一覧</h3>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th>タイトル</th>
-          <th>日程</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @plans.each do |plan| %>
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-4">
+      <h3>予定一覧</h3>
+      <table class="table table-bordered">
+        <thead class="thead-light">
           <tr>
-            <td><%= link_to plan.title , plan %></td>
-            <td><%= plan.date_time.strftime("%m-%d") %></td>
+            <th>タイトル</th>
+            <th>日程</th>
           </tr>
+        </thead>
+        <tbody>
+          <% @plans.each do |plan| %>
+            <tr>
+              <td><%= link_to plan.title , plan %></td>
+              <td><%= plan.date_time.strftime("%m-%d") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="col-8">
+      <%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
+        <%= date.day %>
+        
+        <% plans.each do |plan| %>
+          <div>
+            <%= link_to plan.title, plan %>
+          </div>
         <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div>
-  <%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
-    <%= date.day %>
-    
-    <% plans.each do |plan| %>
-      <div>
-        <%= link_to plan.title, plan %>
-      </div>
-    <% end %>
-  <% end %>  
+      <% end %>
+    </div>
   </div>
 </div>

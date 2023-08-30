@@ -1,14 +1,33 @@
-<div>
-  <p>タイトル</p>
-  <p><%= @plan.title %></p>
-  
-  <p>内容</p>
-  <p><%= @plan.body %></p>
-  
-  <p>日時</p>
-  <p><%= @plan.date_time.strftime("%m-%d") %></p>
-  
-  <%= link_to "編集", edit_plan_path(@plan) %>
-  <%= link_to "削除", plan_path(@plan), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <%= link_to "戻る", plans_path %>
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-4">
+      <p><strong>タイトル</strong></p>
+      <p><%= @plan.title %></p>
+      
+      <p><strong>内容</strong></p>
+      <p><%= @plan.body %></p>
+      
+      <p><strong>日時</strong></p>
+      <p><%= @plan.date_time.strftime("%m-%d") %></p>
+      
+      <%= link_to "編集", edit_plan_path(@plan) %>
+      |
+      <%= link_to "削除", plan_path(@plan), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      |
+      <%= link_to "戻る", plans_path %>
+    </div>
+    
+    <div class="col-8">
+      <%= month_calendar(attribute: :date_time, events: @plans) do |date, plans| %>
+        <%= date.day %>
+        
+        <% plans.each do |plan| %>
+          <div>
+            <%= link_to plan.title, plan %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    
+  </div>
 </div>

@@ -2,11 +2,11 @@ class PlansController < ApplicationController
   def new
     @plan = Plan.new
   end
-  
+
   def create
     @plan = current_user.plans.new(plan_params)
     if @plan.save
-      redirect_to plans_path
+      redirect_to plans_path, notice: "追加しました"
     else
       render :new
     end
@@ -19,6 +19,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    @plans = Plan.all
   end
 
   def edit
@@ -28,20 +29,20 @@ class PlansController < ApplicationController
   def update
     @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
-      redirect_to plan_path(@plan)
+      redirect_to plan_path(@plan), notice: "更新しました"
     else
       render :edit
     end
   end
-  
+
   def destroy
     @plan = Plan.find(params[:id])
     @plan.destroy
-    redirect_to plans_path
+    redirect_to plans_path, alert: "削除しました"
   end
-  
+
   private
-  
+
   def plan_params
     params.require(:plan).permit(:title, :body, :date_time)
   end
