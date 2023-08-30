@@ -34,6 +34,11 @@ class PlansController < ApplicationController
     end
   end
   
+  def destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy
+    redirect_to plans_path
+  end
   
   private
   
