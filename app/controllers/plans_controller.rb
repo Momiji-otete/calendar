@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_login_user, only: [:edit, :update]
+  
   def new
     @plan = Plan.new
   end
@@ -23,11 +26,9 @@ class PlansController < ApplicationController
   end
 
   def edit
-    @plan = Plan.find(params[:id])
   end
 
   def update
-    @plan = Plan.find(params[:id])
     if @plan.update(plan_params)
       redirect_to plan_path(@plan), notice: "更新しました"
     else
@@ -45,5 +46,12 @@ class PlansController < ApplicationController
 
   def plan_params
     params.require(:plan).permit(:title, :body, :date_time)
+  end
+  
+  def check_login_user
+    @plan = Plan.find(params[:id])
+    unless @plan.user_id == current_user.id
+      redirect_to plans_path
+    end
   end
 end
